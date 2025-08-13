@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seni Seviyorum</title>
+<style>
+  body {
+    margin: 0;
+    background: #fff0f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  /* Kalp buton */
+  .heart-button {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    animation: heartbeat 1.5s infinite;
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+  }
+  .heart-button:hover {
+    transform: scale(1.1);
+    animation-play-state: paused;
+  }
+
+  /* Kalp SVG */
+  .heart-svg {
+    width: 100%;
+    height: 100%;
+    fill: #ff4d6d;
+    filter: drop-shadow(0 0 5px #ff4d6d);
+    transition: transform 0.2s ease;
+  }
+
+  /* Kalp içindeki yazı */
+  .heart-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 700;
+    font-size: 32px;
+    color: white;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25%, 75% { transform: scale(1.15); }
+    50% { transform: scale(1); }
+  }
+
+  /* İçerik wrapper: lale + fotoğraflar */
+  #contentWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    max-width: 900px;
+    width: 90vw;
+    opacity: 0;
+    transition: opacity 2.5s ease;
+  }
+  #contentWrapper.goster {
+    opacity: 1;
+  }
+
+  /* Lale demeti */
+  #laleDemeti {
+    width: 350px;
+    height: auto;
+  }
+
+  /* Fotoğraf sütunları */
+  #fotoWrapperSol,
+  #fotoWrapperSag {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Fotoğraflar */
+  #fotoWrapperSol img,
+  #fotoWrapperSag img {
+    max-width: 180px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  #fotoWrapperSol img:hover,
+  #fotoWrapperSag img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Kalp butona basınca kaybolma animasyonu */
+  .fade-out {
+    animation: fadeOutAnim 1s forwards;
+  }
+
+  @keyframes fadeOutAnim {
+    to { opacity: 0; transform: scale(0); }
+  }
+</style>
+</head>
+<body>
+
+<button class="heart-button" id="kalp" aria-label="Kalp butonu" onclick="showContent()">
+  <svg class="heart-svg" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+             2 5.42 4.42 3 7.5 3
+             c1.74 0 3.41 0.81 4.5 2.09
+             C13.09 3.81 14.76 3 16.5 3
+             19.58 3 22 5.42 22 8.5
+             c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+  <div class="heart-text">Rürüm</div>
+</button>
+<div class="yazi">
+  <h1 style="font-family:serif; color: #fa9fb5;">Seni Seviyoruuummmm</h1>
+</div>
+<div id="contentWrapper" role="region" aria-label="Lale Demeti ve Fotoğraflar">
+  <div id="fotoWrapperSol">
+    <img src="images/1.jpg" alt="Fotoğraf 1" />
+    <img src="images/2.jpg" alt="Fotoğraf 2" />
+  </div>
+
+  <div>
+    <img height="500vh"; src="images/pngegg.png">
+  </div>
+ 
+
+  <div id="fotoWrapperSag">
+    <img src="images/3.jpg" alt="Fotoğraf 3" />
+    <img src="images/4.jpg" alt="Fotoğraf 4" />
+  </div>
+</div>
+
+<script>
+  function showContent() {
+    const kalp = document.getElementById('kalp');
+    const contentWrapper = document.getElementById('contentWrapper');
+
+    kalp.classList.add('fade-out');
+
+    setTimeout(() => {
+      contentWrapper.classList.add('goster');
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
